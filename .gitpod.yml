@@ -1,0 +1,13 @@
+image: gitpod/workspace-full
+tasks:
+  - init: |
+      git clone https://github.com/flutter/flutter.git -b stable $HOME/flutter
+      echo 'export PATH="$HOME/flutter/bin:$PATH"' >> ~/.bashrc
+      source ~/.bashrc
+      flutter config --enable-web
+      flutter doctor
+      flutter pub get
+    command: flutter run -d web-server --web-hostname=0.0.0.0 --web-port=8080
+ports:
+  - port: 8080
+    onOpen: open-preview
